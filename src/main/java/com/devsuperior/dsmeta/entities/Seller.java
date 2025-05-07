@@ -20,10 +20,10 @@ public class Seller {
 	private String name;
 	private String email;
 	private String phone;
-	
+
 	@OneToMany(mappedBy = "seller")
 	private List<Sale> sales = new ArrayList<>();
-	
+
 	public Seller() {
 	}
 
@@ -66,7 +66,7 @@ public class Seller {
 		this.phone = phone;
 	}
 
-	public List<Sale> getSales() {
-		return sales;
-	}	
+	public void setSales(List<Sale> sales) {
+		this.sales = sales;
+	}
 }
