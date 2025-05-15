@@ -15,10 +15,10 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 
     @Query(value = "SELECT obj FROM Sale obj JOIN FETCH obj.seller " +
             "WHERE obj.date BETWEEN :minDate AND :maxDate " +
-            "AND UPPER(obj.seller.name) LIKE UPPER(CONCAT('%', :name, '%'))",
+            "AND (:name IS NULL OR UPPER(obj.seller.name) LIKE UPPER(CONCAT('%', :name, '%')))",
             countQuery = "SELECT COUNT(obj) FROM Sale obj JOIN obj.seller " +
             "WHERE obj.date BETWEEN :minDate AND :maxDate " +
-            "AND UPPER(obj.seller.name) LIKE UPPER(CONCAT('%', :name, '%'))")
+            "AND (:name IS NULL OR UPPER(obj.seller.name) LIKE UPPER(CONCAT('%', :name, '%')))")
     Page<Sale> searchByReport(LocalDate minDate, LocalDate maxDate, String name, Pageable pageable);
 
     @Query("SELECT new com.devsuperior.dsmeta.dto.SummaryMinDTO(obj.seller.name, SUM(obj.amount)) " +

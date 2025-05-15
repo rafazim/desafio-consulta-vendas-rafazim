@@ -33,7 +33,7 @@ public class SaleService {
 
 		LocalDate maxDate = (maxDateStr == null || maxDateStr.isBlank()) ? today : LocalDate.parse(maxDateStr);
 		LocalDate minDate = (minDateStr == null || minDateStr.isBlank()) ? maxDate.minusYears(1L) : LocalDate.parse(minDateStr);
-		String safeName = Optional.ofNullable(name).orElse("");
+		String safeName = (name == null || name.isBlank()) ? null : name;
 
 		Page<Sale> page = repository.searchByReport(minDate, maxDate, safeName, pageable);
 		return page.map(ReportMinDTO::new);

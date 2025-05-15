@@ -9,20 +9,20 @@ public class ReportMinDTO {
     private Long id;
     private LocalDate date;
     private Double amount;
-    private String SellerName;
+    private String sellerName;
 
     public ReportMinDTO(Long id, LocalDate date, Double amount, String name) {
         this.id = id;
         this.date = date;
         this.amount = amount;
-        this.SellerName = name;
+        this.sellerName = name;
     }
 
     public ReportMinDTO(Sale sale){
         id = sale.getId();
         date = sale.getDate();
         amount = sale.getAmount();
-        SellerName = sale.getSeller().getName();
+        sellerName = sale.getSeller().getName();
     }
 
     public Long getId() {
@@ -38,6 +38,6 @@ public class ReportMinDTO {
     }
 
     public String getSellerName() {
-        return SellerName;
+        return sellerName;
     }
 }
